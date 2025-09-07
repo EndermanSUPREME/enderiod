@@ -9,6 +9,17 @@ class Player {
         
         this.speed = 5;
         this.jumpForce = 5;
+        this.grounded = false;
+
+        // create feet for realistic ground collision
+        this.feet = new Sprite(
+            this.sprite.x, this.sprite.y + this.sprite.height/2 + 2,
+            this.sprite.width - 2, 4);
+
+        this.sprite.bounciness = this.feet.bounciness = 0;
+        this.feet.visible = false;
+        this.feet.rotationLock = true;
+        this.feet.collider = "none";
     }
 
     set_grounded(v) {
@@ -16,6 +27,10 @@ class Player {
     }
 
     update() {
+        // update foot position
+        this.feet.x = this.sprite.x;
+        this.feet.y = this.sprite.y + this.sprite.height / 2;
+
         if (kb.pressing("a") || kb.pressing("left")) {
             this.sprite.vel.x = -this.speed;
         } else if (kb.pressing("d") || kb.pressing("right")) {
@@ -25,8 +40,9 @@ class Player {
             this.sprite.vel.x = 0;
         }
 
-        if (kb.pressing("space") && this.grounded) {
-            this.sprite.vel.y += -this.jumpForce;
+        if (kb.pressing("space") && this.grounded === true) {
+            this.sprite.vel.y = -this.jumpForce;
+            this.grounded = false;
         }
     }
 }
