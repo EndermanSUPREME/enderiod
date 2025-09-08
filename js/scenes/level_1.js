@@ -80,6 +80,10 @@ class LevelOne {
         return this.worldObjects;
     }
 
+    get_platforms() {
+        return this.platforms;
+    }
+
     render_level() {
         this.inner_update()
     }
