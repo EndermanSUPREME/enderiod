@@ -22,6 +22,10 @@ class Player {
         this.feet.collider = "none";
     }
 
+    get_sprite() {
+        return this.sprite;
+    }
+
     set_grounded(v) {
         this.grounded = v;
     }
