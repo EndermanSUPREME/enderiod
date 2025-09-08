@@ -59,10 +59,25 @@ class LevelOne {
     constructor(playerRef) {
         this.player = playerRef;
 
+        this.worldObjects = new Group(); // can only hold sprites
         this.platforms = new Group();
         this.walls = new Group();
 
         this.draw_sprites();
+
+        // Add each platform sprite
+        for (let platform of this.platforms) {
+            this.worldObjects.add(platform);
+        }
+
+        // Add each wall sprite
+        for (let wall of this.walls) {
+            this.worldObjects.add(wall);
+        }
+    }
+
+    get_world_objects() {
+        return this.worldObjects;
     }
 
     render_level() {
