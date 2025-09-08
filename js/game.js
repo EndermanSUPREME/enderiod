@@ -42,5 +42,5 @@ function update() {
 
 function update_camera() {
     camera.x = player.get_sprite().x;
-    camera.y = player.get_sprite().y;
+    camera.y = player.get_sprite().y - (player.get_scale() * 1.5);
 }
